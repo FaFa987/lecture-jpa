@@ -24,7 +24,5 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
         studentRepository.save(new Student("Simon", "Elbrink","simon@lexicon.se"));
 
-
-
     }
 }
