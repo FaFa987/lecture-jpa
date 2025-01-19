@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 //import se.lexicon.lecturejpa.entity.Student;
-import se.lexicon.lecturejpa.model.Student;
+import se.lexicon.lecturejpa.entity.Student;
 import se.lexicon.lecturejpa.repository.StudentRepository;
 
 @Component

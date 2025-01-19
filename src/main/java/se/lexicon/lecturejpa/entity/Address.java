@@ -1,4 +1,4 @@
-package se.lexicon.lecturejpa.model;
+package se.lexicon.lecturejpa.entity;
 import jakarta.persistence.*;
 @Entity()
 public class Address {

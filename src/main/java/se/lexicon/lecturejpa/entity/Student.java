@@ -1,4 +1,4 @@
-package se.lexicon.lecturejpa.model;
+package se.lexicon.lecturejpa.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 // https://thorben-janssen.com/key-jpa-hibernate-annotations/
