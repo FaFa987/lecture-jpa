@@ -18,10 +18,13 @@ public class Student {
     private boolean active;
     //    @Column(columnDefinition = "DEFAULT NOW()")
     private LocalDateTime createDate;
+
     @OneToOne
     private Address address;
+
     protected Student() {
     }
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +32,7 @@ public class Student {
         this.active = true;
         this.createDate = LocalDateTime.now();
     }
+
     public Student(String id, String firstName, String lastName, String email, boolean active, LocalDateTime createDate) {
         this.id = id;
         this.firstName = firstName;
@@ -37,6 +41,7 @@ public class Student {
         this.active = active;
         this.createDate = createDate;
     }
+
     public String getId() {
         return id;
     }
@@ -73,6 +78,7 @@ public class Student {
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
+
     @Override
     public String toString() {
         return "Student{" +
