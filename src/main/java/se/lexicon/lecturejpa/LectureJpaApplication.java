@@ -34,6 +34,9 @@ public class LectureJpaApplication {
 			Student student = new Student("John", "Doe" , "john@doe.com");
 			student.setAddress(address);
 
+			System.out.println(student);
+			System.out.println(address);
+
 			studentRepository.save(student);
 		};
 	}
