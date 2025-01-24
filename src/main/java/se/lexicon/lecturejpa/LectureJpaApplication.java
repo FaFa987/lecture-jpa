@@ -1,7 +1,13 @@
 package se.lexicon.lecturejpa;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import se.lexicon.lecturejpa.entity.Address;
+import se.lexicon.lecturejpa.entity.Student;
+import se.lexicon.lecturejpa.repository.AddressRepository;
+import se.lexicon.lecturejpa.repository.StudentRepository;
 
 @SpringBootApplication
 public class LectureJpaApplication {
@@ -15,6 +21,20 @@ public class LectureJpaApplication {
 		//Spring app is terminated here
 		System.out.println("Ending");
 
+	}
+
+	@Bean
+	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository) {
+		return args -> {
+
+			Address address = new Address("someStreet", "someCity" , "123456");
+			address = addressRepository.save(address);
+
+			Student student = new Student("John", "Doe" , "john@doe.com");
+			student.setAddress(address);
+
+			studentRepository.save(student);
+		};
 	}
 
 }
