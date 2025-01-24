@@ -27,7 +27,7 @@ public class LectureJpaApplication {
 	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository) {
 		return args -> {
 
-			Address address = new Address("someStreet", "someCity" , "123456");
+			Address address = new Address("someStreet", "someCity" , "123456"); // ID:0
 			address = addressRepository.save(address);
 
 			// 🎶
