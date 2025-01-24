@@ -28,6 +28,9 @@ public class Address {
     @Column(nullable = false, length = 6)
     private String zipCode;
 
+    @OneToOne // Bi-Directional Relationship
+    private Student student;
+
 
     public Address(@NonNull String street, @NonNull String city, String zipCode) {
         this.street = street;
