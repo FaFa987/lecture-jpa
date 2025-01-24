@@ -30,6 +30,7 @@ public class LectureJpaApplication {
 			Address address = new Address("someStreet", "someCity" , "123456");
 			address = addressRepository.save(address);
 
+			// 🎶
 			Student student = new Student("John", "Doe" , "john@doe.com");
 			student.setAddress(address);
 
