@@ -28,14 +28,14 @@ public class LectureJpaApplication {
 		return args -> {
 
 			Address address = new Address("someStreet", "someCity" , "123456"); // ID:0
-			address = addressRepository.save(address);
+			// address = addressRepository.save(address);
 
 			// 🎶
 			Student student = new Student("John", "Doe" , "john@doe.com");
 			student.setAddress(address);
 
-			System.out.println(student);
-			System.out.println(address);
+			// System.out.println(student);
+			// System.out.println(address);
 
 			studentRepository.save(student);
 		};

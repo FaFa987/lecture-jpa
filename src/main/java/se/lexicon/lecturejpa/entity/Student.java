@@ -19,7 +19,7 @@ public class Student {
     //    @Column(columnDefinition = "DEFAULT NOW()")
     private LocalDateTime createDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
     protected Student() {
@@ -45,36 +45,47 @@ public class Student {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public boolean isActive() {
         return active;
     }
+
     public void setActive(boolean active) {
         this.active = active;
     }
+
     public LocalDateTime getCreateDate() {
         return createDate;
     }
+
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
