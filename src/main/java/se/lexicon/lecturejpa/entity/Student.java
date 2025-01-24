@@ -19,7 +19,8 @@ public class Student {
     //    @Column(columnDefinition = "DEFAULT NOW()")
     private LocalDateTime createDate;
 
-    @OneToOne(cascade = CascadeType.PERSIST) // Bi-Directional Relationship
+    @OneToOne(cascade = CascadeType.ALL) // Bi-Directional Relationship
+    @JoinColumn(name = "address_id")
     private Address address;
 
     protected Student() {

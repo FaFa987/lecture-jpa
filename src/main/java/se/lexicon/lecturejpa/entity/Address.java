@@ -28,7 +28,8 @@ public class Address {
     @Column(nullable = false, length = 6)
     private String zipCode;
 
-    @OneToOne // Bi-Directional Relationship
+    @ToString.Exclude
+    @OneToOne(mappedBy = "address") // Bi-Directional Relationship
     private Student student;
 
 
