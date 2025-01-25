@@ -5,9 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import se.lexicon.lecturejpa.entity.Address;
+import se.lexicon.lecturejpa.entity.Course;
 import se.lexicon.lecturejpa.entity.Student;
 import se.lexicon.lecturejpa.repository.AddressRepository;
+import se.lexicon.lecturejpa.repository.CourseRepository;
 import se.lexicon.lecturejpa.repository.StudentRepository;
+
+import java.util.Set;
 
 @SpringBootApplication
 public class LectureJpaApplication {
@@ -24,7 +28,7 @@ public class LectureJpaApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository) {
+	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository , CourseRepository courseRepository) {
 		return args -> {
 
 			Address address = new Address("someStreet", "someCity" , "123456"); // ID:0
@@ -38,6 +42,14 @@ public class LectureJpaApplication {
 			// System.out.println(address);
 
 			studentRepository.save(student);
+
+			Course course = new Course("Java Course");
+			course = courseRepository.save(course);
+
+			student.setCourse(Set.of(course));
+			course.setStudent(student);
+
+			System.out.println(student);
 		};
 	}
 
