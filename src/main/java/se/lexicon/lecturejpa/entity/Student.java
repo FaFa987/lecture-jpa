@@ -1,5 +1,7 @@
 package se.lexicon.lecturejpa.entity;
 import jakarta.persistence.*;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 // https://thorben-janssen.com/key-jpa-hibernate-annotations/
 @Entity(name = "students")
@@ -16,6 +18,8 @@ public class Student {
     private String email;
     @Column(name = "is_active")
     private boolean active;
+
+    @ToString.Exclude
     //    @Column(columnDefinition = "DEFAULT NOW()")
     private LocalDateTime createDate;
 
