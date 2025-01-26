@@ -34,11 +34,12 @@ public class Student {
     private LocalDateTime createDate;
 
     @OneToOne(cascade = CascadeType.ALL) // Bi-Directional Relationship
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name= "address_id")
     private Address address;
 
-    @OneToMany (cascade = CascadeType.ALL)
-    private Set<Course> course = new HashSet<>();
+    //One Student can be part of many courses.
+    @OneToMany(mappedBy = "student", cascade = CascadeType.PERSIST) // Bi-directional
+    private Set<Course> courses = new HashSet<>();
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -46,7 +47,14 @@ public class Student {
         this.email = email;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    //Convenience Methods
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.setStudent(this);
     }
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.setStudent(null);
+    }
+
 }

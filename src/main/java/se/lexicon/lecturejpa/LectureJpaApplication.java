@@ -34,22 +34,23 @@ public class LectureJpaApplication {
 			Address address = new Address("someStreet", "someCity" , "123456"); // ID:0
 			// address = addressRepository.save(address);
 
-			// 🎶
 			Student student = new Student("John", "Doe" , "john@doe.com");
 			student.setAddress(address);
 
 			// System.out.println(student);
 			// System.out.println(address);
 
-			studentRepository.save(student);
-
+			// Course
 			Course course = new Course("Java Course");
-			course = courseRepository.save(course);
-
-			student.setCourse(Set.of(course));
-			course.setStudent(student);
-
+			Course course2 = new Course("Spring Boot");
+//            Course course3 = new Course("Java Course");
+//            Course course4 = new Course("Java Course");
+//            course = courseRepository.save(course);
+			student.addCourse(course);
+			student.addCourse(course2);
+			student = studentRepository.save(student);
 			System.out.println(student);
+
 		};
 	}
 
