@@ -4,14 +4,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import se.lexicon.lecturejpa.entity.Address;
-import se.lexicon.lecturejpa.entity.Course;
 import se.lexicon.lecturejpa.entity.Student;
 import se.lexicon.lecturejpa.repository.AddressRepository;
 import se.lexicon.lecturejpa.repository.CourseRepository;
+import se.lexicon.lecturejpa.repository.InstructorRepository;
 import se.lexicon.lecturejpa.repository.StudentRepository;
-
-import java.util.Set;
 
 @SpringBootApplication
 public class LectureJpaApplication {
@@ -28,30 +25,34 @@ public class LectureJpaApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository , CourseRepository courseRepository) {
+	CommandLineRunner runner(StudentRepository studentRepository, AddressRepository addressRepository, CourseRepository courseRepository, InstructorRepository instructorRepository) {
 		return args -> {
 
-			Address address = new Address("someStreet", "someCity" , "123456"); // ID:0
-			// address = addressRepository.save(address);
+			// Will create a student and now with a createdDate value.
+//            studentRepository.save(new Student("Simon", "Elbrink", "simon@lexicon.se"));
 
-			Student student = new Student("John", "Doe" , "john@doe.com");
-			student.setAddress(address);
 
-			// System.out.println(student);
-			// System.out.println(address);
+			// Verifying that predefined method works.
+			Student found = studentRepository.findById("1").orElseThrow(() -> new RuntimeException("Student Not Found"));
 
-			// Course
-			Course course = new Course("Java Course");
-			Course course2 = new Course("Spring Boot");
-//            Course course3 = new Course("Java Course");
-//            Course course4 = new Course("Java Course");
-//            course = courseRepository.save(course);
-			student.addCourse(course);
-			student.addCourse(course2);
-			student = studentRepository.save(student);
-			System.out.println(student);
+			// LazyInitializationException is NOT Thrown for Address & Course when fetchType is Eager
+			// - It's fetching more data which is good if you need it, otherwise it's a wast of resources.
+			// See the picture at: img/Debug - Eager Loading.png
+			System.out.println( // Debug this line.
+					"""
+                            Student name: %s
+                            Address-Street: %s
+                            """.formatted(found.getFirstName(),found.getAddress().getStreet())
+			);
+
+
+			//Verify repo methods here / In JUnit or in the Repo itself with IntelliJ's Query Console.
+			System.out.println(studentRepository.countByActiveTrue());
+
+			studentRepository.findByFirstNameContaining("john").forEach(System.out::println);
 
 		};
 	}
+
 
 }
